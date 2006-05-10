@@ -1,0 +1,106 @@
+diff -urN Regina-3.3/Makefile.in Regina-3.3-patched/Makefile.in
+--- Regina-3.3/Makefile.in	2004-04-24 00:37:56.000000000 +0200
++++ Regina-3.3-patched/Makefile.in	2006-05-10 23:22:42.701359035 +0200
+@@ -898,58 +898,58 @@
+ install: $(BASE_INSTALL) $(OTHER_INSTALLS)
+ 
+ installbase: all
+-	$(INSTALL) -m 755 -d $(bindir)
+-	$(INSTALL) -m 755 -d $(libdir)
+-	$(INSTALL) -m 755 -d $(includedir)
+-	$(INSTALL) -m 755 -d $(sharedir)
+-	$(INSTALL) -m 755 -d $(mandir)/man1
+-	$(INSTALL) -m 755 -c ./rexx$(EXE) $(bindir)/rexx$(EXE)
+-	$(INSTALL) -m 755 -c ./rxqueue$(EXE) $(bindir)/rxqueue$(EXE)
+-	$(INSTALL) -m 755 -c ./rxstack$(EXE) $(bindir)/rxstack$(EXE)
+-	$(INSTALL) -m 755 -c ./regina-config $(bindir)/regina-config
+-	-$(INSTALL) -m 755 -c ./rxstack.init.d $(sysconfdir)/rc.d/init.d/rxstack
++	$(INSTALL) -m 755 -d $(DESTDIR)$(bindir)
++	$(INSTALL) -m 755 -d $(DESTDIR)$(libdir)
++	$(INSTALL) -m 755 -d $(DESTDIR)$(includedir)
++	$(INSTALL) -m 755 -d $(DESTDIR)$(sharedir)
++	$(INSTALL) -m 755 -d $(DESTDIR)$(mandir)/man1
++	$(INSTALL) -m 755 -c ./rexx$(EXE) $(DESTDIR)$(bindir)/rexx$(EXE)
++	$(INSTALL) -m 755 -c ./rxqueue$(EXE) $(DESTDIR)$(bindir)/rxqueue$(EXE)
++	$(INSTALL) -m 755 -c ./rxstack$(EXE) $(DESTDIR)$(bindir)/rxstack$(EXE)
++	$(INSTALL) -m 755 -c ./regina-config $(DESTDIR)$(bindir)/regina-config
++	-$(INSTALL) -m 755 -c ./rxstack.init.d $(DESTDIR)$(sysconfdir)/rc.d/init.d/rxstack
+ 	@echo "The system startup/shutdown script; rxstack, may have been installed into $(sysconfdir)/rc.d/init.d"
+ 	@echo "You need to create the appropriate links to this script to start and stop rxstack automatically."
+-	-$(INSTALL) -m 755 -c ./$(LIBPRE)$(LIBFILE)$(LIBPST) $(libdir)/$(LIBPRE)$(LIBFILE)$(LIBPST)
+-	-$(RANLIB) $(libdir)/$(LIBPRE)$(LIBFILE)$(LIBPST)
+-	$(INSTALL) -m 644 -c $(srcdir)/regina.1 $(mandir)/man1/regina.1
+-	$(INSTALL) -m 644 -c $(srcdir)/rexxsaa.h $(includedir)/rexxsaa.h
+-	$(INSTALL) -m 644 -c ./pt.mtb $(sharedir)/pt.mtb
+-	$(INSTALL) -m 644 -c ./no.mtb $(sharedir)/no.mtb
+-	$(INSTALL) -m 644 -c ./de.mtb $(sharedir)/de.mtb
+-	$(INSTALL) -m 644 -c ./es.mtb $(sharedir)/es.mtb
+-	$(INSTALL) -m 644 -c ./pl.mtb $(sharedir)/pl.mtb
+-	$(bindir)/rexx $(srcdir)/preinst.rexx $(bindir)/rexx $(srcdir)/demo/rexxcps.rexx  $(sharedir)/rexxcps.rexx
+-	-chmod 755 $(sharedir)/rexxcps.rexx
+-	$(bindir)/rexx $(srcdir)/preinst.rexx $(bindir)/rexx $(srcdir)/demo/animal.rexx   $(sharedir)/animal.rexx
+-	-chmod 755 $(sharedir)/animal.rexx
+-	$(bindir)/rexx $(srcdir)/preinst.rexx $(bindir)/rexx $(srcdir)/demo/block.rexx    $(sharedir)/block.rexx
+-	-chmod 755 $(sharedir)/block.rexx
+-	$(bindir)/rexx $(srcdir)/preinst.rexx $(bindir)/rexx $(srcdir)/demo/dateconv.rexx $(sharedir)/dateconv.rexx
+-	-chmod 755 $(sharedir)/dateconv.rexx
+-	$(bindir)/rexx $(srcdir)/preinst.rexx $(bindir)/rexx $(srcdir)/demo/timeconv.rexx $(sharedir)/timeconv.rexx
+-	-chmod 755 $(sharedir)/timeconv.rexx
+-	$(bindir)/rexx $(srcdir)/preinst.rexx $(bindir)/rexx $(srcdir)/demo/newstr.rexx   $(sharedir)/newstr.rexx
+-	-chmod 755 $(sharedir)/newstr.rexx
++	-$(INSTALL) -m 755 -c ./$(LIBPRE)$(LIBFILE)$(LIBPST) $(DESTDIR)$(libdir)/$(LIBPRE)$(LIBFILE)$(LIBPST)
++	-$(RANLIB) $(DESTDIR)$(libdir)/$(LIBPRE)$(LIBFILE)$(LIBPST)
++	$(INSTALL) -m 644 -c $(srcdir)/regina.1 $(DESTDIR)$(mandir)/man1/regina.1
++	$(INSTALL) -m 644 -c $(srcdir)/rexxsaa.h $(DESTDIR)$(includedir)/rexxsaa.h
++	$(INSTALL) -m 644 -c ./pt.mtb $(DESTDIR)$(sharedir)/pt.mtb
++	$(INSTALL) -m 644 -c ./no.mtb $(DESTDIR)$(sharedir)/no.mtb
++	$(INSTALL) -m 644 -c ./de.mtb $(DESTDIR)$(sharedir)/de.mtb
++	$(INSTALL) -m 644 -c ./es.mtb $(DESTDIR)$(sharedir)/es.mtb
++	$(INSTALL) -m 644 -c ./pl.mtb $(DESTDIR)$(sharedir)/pl.mtb
++	$(DESTDIR)$(bindir)/rexx $(srcdir)/preinst.rexx $(bindir)/rexx $(srcdir)/demo/rexxcps.rexx  $(DESTDIR)$(sharedir)/rexxcps.rexx
++	-chmod 755 $(DESTDIR)$(sharedir)/rexxcps.rexx
++	$(DESTDIR)$(bindir)/rexx $(srcdir)/preinst.rexx $(bindir)/rexx $(srcdir)/demo/animal.rexx   $(DESTDIR)$(sharedir)/animal.rexx
++	-chmod 755 $(DESTDIR)$(sharedir)/animal.rexx
++	$(DESTDIR)$(bindir)/rexx $(srcdir)/preinst.rexx $(bindir)/rexx $(srcdir)/demo/block.rexx    $(DESTDIR)$(sharedir)/block.rexx
++	-chmod 755 $(DESTDIR)$(sharedir)/block.rexx
++	$(DESTDIR)$(bindir)/rexx $(srcdir)/preinst.rexx $(bindir)/rexx $(srcdir)/demo/dateconv.rexx $(DESTDIR)$(sharedir)/dateconv.rexx
++	-chmod 755 $(DESTDIR)$(sharedir)/dateconv.rexx
++	$(DESTDIR)$(bindir)/rexx $(srcdir)/preinst.rexx $(bindir)/rexx $(srcdir)/demo/timeconv.rexx $(DESTDIR)$(sharedir)/timeconv.rexx
++	-chmod 755 $(DESTDIR)$(sharedir)/timeconv.rexx
++	$(DESTDIR)$(bindir)/rexx $(srcdir)/preinst.rexx $(bindir)/rexx $(srcdir)/demo/newstr.rexx   $(DESTDIR)$(sharedir)/newstr.rexx
++	-chmod 755 $(DESTDIR)$(sharedir)/newstr.rexx
+ 
+ installregina:
+-	$(INSTALL) -m 755 -c ./regina$(EXE) $(bindir)/regina$(EXE)
+-	$(bindir)/rexx $(srcdir)/preinst.rexx $(bindir)/regina $(srcdir)/demo/dynfunc.rexx  $(sharedir)/dynfunc.rexx
+-	-chmod 755 $(sharedir)/dynfunc.rexx
++	$(INSTALL) -m 755 -c ./regina$(EXE) $(DESTDIR)$(bindir)/regina$(EXE)
++	$(DESTDIR)$(bindir)/rexx $(srcdir)/preinst.rexx $(bindir)/regina $(srcdir)/demo/dynfunc.rexx  $(DESTDIR)$(sharedir)/dynfunc.rexx
++	-chmod 755 $(DESTDIR)$(sharedir)/dynfunc.rexx
+ 
+ installlib: installregina
+-	$(INSTALL) -m 755 -c ./$(SHLPRE)$(SHLFILE)$(SHLPST) $(libdir)/$(SHLPRE)$(SHLFILE)$(SHLPST)
+-	$(INSTALL) -m 755 -c ./$(SHLPRE)test1$(MODPST) $(libdir)/$(SHLPRE)test1$(MODPST)
+-	$(INSTALL) -m 755 -c ./$(SHLPRE)test2$(MODPST) $(libdir)/$(SHLPRE)test2$(MODPST)
++	$(INSTALL) -m 755 -c ./$(SHLPRE)$(SHLFILE)$(SHLPST) $(DESTDIR)$(libdir)/$(SHLPRE)$(SHLFILE)$(SHLPST)
++	$(INSTALL) -m 755 -c ./$(SHLPRE)test1$(MODPST) $(DESTDIR)$(libdir)/$(SHLPRE)test1$(MODPST)
++	$(INSTALL) -m 755 -c ./$(SHLPRE)test2$(MODPST) $(DESTDIR)$(libdir)/$(SHLPRE)test2$(MODPST)
+ 
+ installabilib: installregina
+-	-$(INSTALL) -m 755 -c ./$(SHLPRE)$(SHLFILE)$(SHLPST).$(ABI) $(libdir)/$(SHLPRE)$(SHLFILE)$(SHLPST).$(ABI)
+-	-rm -f $(libdir)/$(SHLPRE)$(SHLFILE)$(SHLPST).$(ABI_MAJOR)
+-	-(cd $(libdir);$(LN_S) $(SHLPRE)$(SHLFILE)$(SHLPST).$(ABI) $(SHLPRE)$(SHLFILE)$(SHLPST).$(ABI_MAJOR) )
+-	-rm -f $(libdir)/$(SHLPRE)$(SHLFILE)$(SHLPST)
+-	-(cd $(libdir);$(LN_S) $(SHLPRE)$(SHLFILE)$(SHLPST).$(ABI) $(SHLPRE)$(SHLFILE)$(SHLPST) )
+-	$(INSTALL) -m 755 -c ./$(SHLPRE)test1$(MODPST) $(libdir)/$(SHLPRE)test1$(MODPST)
+-	$(INSTALL) -m 755 -c ./$(SHLPRE)test2$(MODPST) $(libdir)/$(SHLPRE)test2$(MODPST)
++	-$(INSTALL) -m 755 -c ./$(SHLPRE)$(SHLFILE)$(SHLPST).$(ABI) $(DESTDIR)$(libdir)/$(SHLPRE)$(SHLFILE)$(SHLPST).$(ABI)
++	-rm -f $(DESTDIR)$(libdir)/$(SHLPRE)$(SHLFILE)$(SHLPST).$(ABI_MAJOR)
++	-(cd $(DESTDIR)$(libdir);$(LN_S) $(SHLPRE)$(SHLFILE)$(SHLPST).$(ABI) $(SHLPRE)$(SHLFILE)$(SHLPST).$(ABI_MAJOR) )
++	-rm -f $(DESTDIR)$(libdir)/$(SHLPRE)$(SHLFILE)$(SHLPST)
++	-(cd $(DESTDIR)$(libdir);$(LN_S) $(SHLPRE)$(SHLFILE)$(SHLPST).$(ABI) $(SHLPRE)$(SHLFILE)$(SHLPST) )
++	$(INSTALL) -m 755 -c ./$(SHLPRE)test1$(MODPST) $(DESTDIR)$(libdir)/$(SHLPRE)test1$(MODPST)
++	$(INSTALL) -m 755 -c ./$(SHLPRE)test2$(MODPST) $(DESTDIR)$(libdir)/$(SHLPRE)test2$(MODPST)
+ 
+ installmacosx: ./$(SHLPRE)$(SHLFILE)$(BUNDLE)
+ 	$(INSTALL) -m 755 -c ./$(SHLPRE)$(SHLFILE)$(BUNDLE) $(libdir)/$(SHLPRE)$(SHLFILE)$(BUNDLE)
