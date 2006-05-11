@@ -13,6 +13,7 @@ Group:		Applications
 Source0:	http://dl.sourceforge.net/regina-rexx/%{name}-REXX-%{version}.tar.gz
 # Source0-md5:	bdb85f57cbe3e7f9b45aea329cd7752e
 Patch0:		%{name}-makefileinfix.patch
+Patch1:		%{name}-init.patch
 URL:		http://regina-rexx.sourceforge.net
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -58,7 +59,8 @@ Dwa g³ówne cele tego internretera, to
 
 %prep
 %setup -q
-%patch -p1
+%patch0 -p1
+%patch1 -p0
 
 %build
 ./configure
@@ -79,17 +81,14 @@ rm -f $RPM_BUILD_ROOT%{_prefix}/man/man1/regina.1
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post -p /sbin/ldconfig
+%post
 /sbin/chkconfig --add rxstack
-%service rxstack restart
 
 %preun
-if [ "$1" = "0" ]; then
-        %service rxstack stop
-        /sbin/chkconfig --del rxstack
+if [ "$1" = "0" ] ; then
+	%service rxstack stop
+	/sbin/chkconfig --del rxstack
 fi
-
-%postun -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
