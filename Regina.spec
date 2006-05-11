@@ -12,19 +12,13 @@ License:	GPL
 Group:		Applications
 Source0:	http://dl.sourceforge.net/regina-rexx/%{name}-REXX-%{version}.tar.gz
 # Source0-md5:	bdb85f57cbe3e7f9b45aea329cd7752e
+Source1:	%{name}.init
 Patch0:		%{name}-makefileinfix.patch
-Patch1:		%{name}-init.patch
 URL:		http://regina-rexx.sourceforge.net
-BuildRequires:	autoconf
-BuildRequires:	automake
 BuildRequires:	bison
 BuildRequires:	flex
-BuildRequires:	mawk
 BuildRequires:	rpmbuild(macros) >= 1.228
 Requires(post,preun):	/sbin/chkconfig
-Provides:	libregina.so
-Provides:	libregina.so(REXXSAA_API)
-Provides:	libregina.so(regina_2.0)
 Provides:	rexx
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -60,7 +54,6 @@ Dwa g³ówne cele tego internretera, to
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p0
 
 %build
 ./configure
@@ -73,7 +66,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{/etc/rc.d/init.d/,%{_mandir}/man1}
 %{__make} install \
     DESTDIR=$RPM_BUILD_ROOT
-install $RPM_BUILD_ROOT%{_prefix}/etc/rc.d/init.d/rxstack $RPM_BUILD_ROOT/etc/rc.d/init.d/
+install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/rxstack
 install $RPM_BUILD_ROOT%{_prefix}/man/man1/regina.1 $RPM_BUILD_ROOT%{_mandir}/man1/
 rm -f $RPM_BUILD_ROOT%{_prefix}/etc/rc.d/init.d/rxstack
 rm -f $RPM_BUILD_ROOT%{_prefix}/man/man1/regina.1
