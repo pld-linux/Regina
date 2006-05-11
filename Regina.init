@@ -23,16 +23,27 @@ RETVAL=0
 
 case "$1" in
   start)
-	echo -n "Starting Regina Stack: "
-	daemon @prefix@/bin/rxstack -d
-	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/rxstack
-	;;
+	# Check if the service is already running?
+	if [ ! -f /var/lock/subsys/rxstack ]; then
+                msg_starting Regina Stack
+			daemon /usr/bin/rxstack -2
+                        RETVAL=$?
+                [ $RETVAL -eq 0 ] && touch /var/lock/subsys/rxstack
+        else
+                msg_already_running Regina Stack
+        fi
+        ;;
   stop)
-	echo -n "Shutting down Regina Stack: "
-	killproc @prefix@/bin/rxstack -2
-	RETVAL=$?
-	[ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/rxstack
-	;;
+        # Stop daemons.
+        if [ -f /var/lock/subsys/rxstack ]; then
+                msg_stopping Regina Stack
+                killproc rxstack
+                rm -f /var/lock/subsys/rxstack > /dev/null 2>&1
+        else
+                msg_not_running Regina Stack
+        fi
+        ;;
+
   restart|reload)
 	$0 stop
 	$0 start
@@ -43,7 +54,7 @@ case "$1" in
 	RETVAL=$?
 	;;
   *)
-	echo "Usage: rxstack {start|stop|status|restart|reload}"
+	msg_usage "$0 {start|stop|status|restart|reload}"
 	exit 1
 esac
 
