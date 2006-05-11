@@ -1,6 +1,5 @@
 # TODO:
 #  - use bconds
-
 Summary:	Rexx interpreter
 Summary(pl):	Interpreter jêzyka REXX
 Name:		Regina
@@ -15,7 +14,7 @@ Patch0:		%{name}-makefileinfix.patch
 URL:		http://regina-rexx.sourceforge.net
 BuildRequires:	bison
 BuildRequires:	flex
-BuildRequires:	rpmbuild(macros) >= 1.228
+BuildRequires:	rpmbuild(macros) >= 1.268
 Requires(post,preun):	/sbin/chkconfig
 Provides:	rexx
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -31,9 +30,8 @@ It is also a language ideally suited as a macro language for other
 applications.
 
 There are two major goals for Regina:
-
-    - become 100% compliant with the ANSI Standard.
-    - be available on as many platforms as possible
+- become 100% compliant with the ANSI Standard.
+- be available on as many platforms as possible
 
 %description -l pl
 Regina jest interpreterem jêzyka REXX, który zosta³ ju¿ przeniesiony
@@ -46,8 +44,8 @@ wystarczaj±co u¿ytecznym, by byæ u¿ywanym przez do¶wiadczonych.
 Idealnie sprawdza siê jako jêzyk pisania makr dla innych aplikacji
 
 Dwa g³ówne cele tego interpretera, to
- - Stuprocentowa kompatybilno¶æ ze standardemi ANSI
- - dostêpno¶æ na jak najwiêkszej liczbie platform
+- Stuprocentowa kompatybilno¶æ ze standardemi ANSI
+- dostêpno¶æ na jak najwiêkszej liczbie platform
 
 %package devel
 Summary:	Header files for Regina
@@ -91,15 +89,16 @@ install -d $RPM_BUILD_ROOT{/etc/rc.d/init.d/,%{_mandir}/man1}
 %{__make} install \
     DESTDIR=$RPM_BUILD_ROOT
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/rxstack
-install $RPM_BUILD_ROOT%{_prefix}/man/man1/regina.1 $RPM_BUILD_ROOT%{_mandir}/man1/
+install $RPM_BUILD_ROOT%{_mandir}/man1/regina.1 $RPM_BUILD_ROOT%{_mandir}/man1
 rm -f $RPM_BUILD_ROOT%{_prefix}/etc/rc.d/init.d/rxstack
-rm -f $RPM_BUILD_ROOT%{_prefix}/man/man1/regina.1
+rm -f $RPM_BUILD_ROOT/usr/man1/regina.1
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/chkconfig --add rxstack
+%service rxstack restart
 
 %preun
 if [ "$1" = "0" ] ; then
@@ -115,6 +114,7 @@ fi
 %doc COPYING-LIB README* demo
 %attr(755,root,root) %{_bindir}/*
 %attr(754,root,root) /etc/rc.d/init.d/rxstack
+%dir %{_datadir}/regina
 %attr(755,root,root) %{_datadir}/regina/*.rexx
 %{_datadir}/regina/*.mtb
 %{_mandir}/man1/regina.1*
