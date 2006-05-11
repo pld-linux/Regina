@@ -89,7 +89,7 @@ install -d $RPM_BUILD_ROOT{/etc/rc.d/init.d/,%{_mandir}/man1}
 %{__make} install \
     DESTDIR=$RPM_BUILD_ROOT
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/rxstack
-install $RPM_BUILD_ROOT%{_mandir}/man1/regina.1 $RPM_BUILD_ROOT%{_mandir}/man1
+install regina.1 $RPM_BUILD_ROOT%{_mandir}/man1
 rm -f $RPM_BUILD_ROOT%{_prefix}/etc/rc.d/init.d/rxstack
 rm -f $RPM_BUILD_ROOT/usr/man1/regina.1
 
