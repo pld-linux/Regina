@@ -1,6 +1,7 @@
 # TODO:
 #  - use bconds
 Summary:	Rexx interpreter
+Summary(de):	Ein Interpreter für REXX
 Summary(pl):	Interpreter jêzyka REXX
 Name:		Regina
 Version:	3.3
@@ -33,6 +34,20 @@ There are two major goals for Regina:
 - become 100% compliant with the ANSI Standard.
 - be available on as many platforms as possible
 
+%description -l de
+Regina ist ein Rexx Interpreter der für die meisten Unix Platformen
+übersetzt worden ist (Linux, FreeBSD, Solaris, AIX, HP-UX, usw.) und
+auser dem auch für OS/2, eCS, DOS, Win9x/Me/NT/2k/XP, Amiga, Aros,
+QNX4.x, QNX6.x, BeOS, MacOS X, EPOC32, AtheOS, OpenVMS, SkyOS und
+OpenEdition. Rexx ist eine Programiersprache die für unerfahrene
+Programierer entwickelt wurde aber Stark genug für erfahrene
+Programierer ist. Es ist ebenfalls eine Sprache die sich ideal als
+Makrosprache für andere Applikationen eignet.
+
+Regina hat zwei Hauptziele:
+- es soll 100% kompatibel mit dem ANSI Standard sein
+- es soll auf so vielen Platformen wie nur möglich laufen
+
 %description -l pl
 Regina jest interpreterem jêzyka REXX, który zosta³ ju¿ przeniesiony
 na wiêkszo¶æ Unixowych platform (Linux, FreeBSD, Solaris, AIX, HP-UX,
@@ -49,6 +64,7 @@ Dwa g³ówne cele tego interpretera, to
 
 %package devel
 Summary:	Header files for Regina
+Summary(de):	Header Dateien für Regina
 Summary(pl):	Pliki nag³ówkowe dla Regina
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
@@ -56,11 +72,15 @@ Requires:	%{name} = %{version}-%{release}
 %description devel
 Development files for Regina.
 
+%description devel -l de
+Header Dateien für Regina.
+
 %description devel -l pl
 Pliki nag³ówkowe dla Regina.
 
 %package libs
 Summary:	Libraries for Regina
+Summary(de):	Regina Libraries
 Summary(pl):	Biblioteki dla Regina
 Group:		Libraries
 Provides:	libregina.so
@@ -69,6 +89,9 @@ Provides:	libregina.so(regina_2.0)
 
 %description libs
 Regina libraries.
+
+%description libs -l de
+Regina Libraries.
 
 %description libs -l pl
 Biblioteki dla packietu Regina.
@@ -91,7 +114,7 @@ install -d $RPM_BUILD_ROOT{/etc/rc.d/init.d/,%{_mandir}/man1}
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/rxstack
 install regina.1 $RPM_BUILD_ROOT%{_mandir}/man1
 rm -f $RPM_BUILD_ROOT%{_prefix}/etc/rc.d/init.d/rxstack
-rm -f $RPM_BUILD_ROOT/usr/man1/regina.1
+rm -f $RPM_BUILD_ROOT%{_prefix}/man1/regina.1
 
 %clean
 rm -rf $RPM_BUILD_ROOT
