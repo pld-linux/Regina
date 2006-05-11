@@ -1,7 +1,5 @@
 # TODO:
-#  - fix the method rxstarck is installed
 #  - use bconds
-#  - create subpackages
 
 Summary:	Rexx interpreter
 Summary(pl):	Interpreter jêzyka REXX
@@ -47,9 +45,35 @@ prostym w u¿yciu przez niedo¶wiadczonych programistów oraz
 wystarczaj±co u¿ytecznym, by byæ u¿ywanym przez do¶wiadczonych.
 Idealnie sprawdza siê jako jêzyk pisania makr dla innych aplikacji
 
-Dwa g³ówne cele tego internretera, to
+Dwa g³ówne cele tego interpretera, to
  - Stuprocentowa kompatybilno¶æ ze standardemi ANSI
  - dostêpno¶æ na jak najwiêkszej liczbie platform
+
+%package devel
+Summary:	Header files for Regina
+Summary(pl):	Pliki nag³ówkowe dla Regina
+Group:		Development/Libraries
+Requires:	%{name} = %{version}-%{release}
+
+%description devel
+Development files for Regina.
+
+%description devel -l pl
+Pliki nag³ówkowe dla Regina.
+
+%package libs
+Summary:	Libraries for Regina
+Summary(pl):	Biblioteki dla Regina
+Group:		Libraries
+Provides:	libregina.so
+Provides:	libregina.so(REXXSAA_API)
+Provides:	libregina.so(regina_2.0)
+
+%description libs
+Regina libraries.
+
+%description libs -l pl
+Biblioteki dla packietu Regina.
 
 %prep
 %setup -q
@@ -83,13 +107,23 @@ if [ "$1" = "0" ] ; then
 	/sbin/chkconfig --del rxstack
 fi
 
+%post libs -p /sbin/ldconfig
+%postun libs -p /sbin/ldconfig
+
 %files
 %defattr(644,root,root,755)
 %doc COPYING-LIB README* demo
 %attr(755,root,root) %{_bindir}/*
 %attr(754,root,root) /etc/rc.d/init.d/rxstack
-%attr(644,root,root) %{_includedir}/rexxsaa.h
-%attr(755,root,root) %{_prefix}/lib/*
 %attr(755,root,root) %{_datadir}/regina/*.rexx
 %{_datadir}/regina/*.mtb
 %{_mandir}/man1/regina.1*
+
+%files libs
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/*.so
+
+%files devel
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/*.a
+%{_includedir}/rexxsaa.h
