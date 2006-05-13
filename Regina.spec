@@ -13,10 +13,13 @@ Source0:	http://dl.sourceforge.net/regina-rexx/%{name}-REXX-%{version}.tar.gz
 Source1:	%{name}.init
 Patch0:		%{name}-makefileinfix.patch
 URL:		http://regina-rexx.sourceforge.net
+BuildRequires:	automake
 BuildRequires:	bison
 BuildRequires:	flex
 BuildRequires:	rpmbuild(macros) >= 1.268
+BuildRequires:	sed >= 4.0
 Requires(post,preun):	/sbin/chkconfig
+Requires:	%{name}-libs = %{version}-%{release}
 Provides:	rexx
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -62,6 +65,21 @@ Dwa g³ówne cele tego interpretera, to
 - Stuprocentowa kompatybilno¶æ ze standardem ANSI
 - dostêpno¶æ na jak najwiêkszej liczbie platform
 
+%package libs
+Summary:	Libraries for Regina
+Summary(de):	Regina Libraries
+Summary(pl):	Biblioteki interpretera Regina
+Group:		Libraries
+
+%description libs
+Regina libraries.
+
+%description libs -l de
+Regina Libraries.
+
+%description libs -l pl
+Biblioteki dla interpretera Regina.
+
 %package devel
 Summary:	Header files for Regina
 Summary(de):	Header Dateien für Regina
@@ -78,30 +96,32 @@ Header Dateien für Regina.
 %description devel -l pl
 Pliki nag³ówkowe interpretera Regina.
 
-%package libs
-Summary:	Libraries for Regina
-Summary(de):	Regina Libraries
-Summary(pl):	Biblioteki interpretera Regina
-Group:		Libraries
-Provides:	libregina.so
-Provides:	libregina.so(REXXSAA_API)
-Provides:	libregina.so(regina_2.0)
+%package static
+Summary:	Static Regina library
+Summary(pl):	Statyczna biblioteka Regina
+Group:		Development/Libraries
+Requires:	%{name}-devel = %{version}-%{release}
 
-%description libs
-Regina libraries.
+%description static
+Static Regina library.
 
-%description libs -l de
-Regina Libraries.
-
-%description libs -l pl
-Biblioteki dla interpretera Regina.
+%description static -l pl
+Statyczna biblioteka Regina.
 
 %prep
 %setup -q
 %patch0 -p1
 
+# hacks for weak tests for gcc
+sed -i -e 's/gcc)/*gcc)/;s/= "gcc"/= "%{__cc}"/' configure
+# unnecessary libs
+sed -i -e 's/nsl nsl_s socket//' configure
+# set soname
+sed -i -e 's/\$(ABI) -shared/$(ABI) -Wl,-soname=${SHLPRE}${SHLFILE}${SHLPST}.\\$(ABI) -shared/' configure
+
 %build
-./configure
+cp -f /usr/share/automake/config.* .
+%configure2_13
 %{__make} \
 	CC="%{__cc}" \
 	CFLAGS="%{rpmcflags}"
@@ -146,9 +166,14 @@ fi
 
 %files libs
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/*.so
+%attr(755,root,root) %{_libdir}/libregina.so.*.*
+%attr(755,root,root) %{_libdir}/libtest*.so
 
 %files devel
 %defattr(644,root,root,755)
-%{_libdir}/*.a
+%attr(755,root,root) %{_libdir}/libregina.so
 %{_includedir}/rexxsaa.h
+
+%files static
+%defattr(644,root,root,755)
+%{_libdir}/libregina.a
