@@ -106,6 +106,9 @@ Requires:	%{name}-devel = %{version}-%{release}
 %description static
 Static Regina library.
 
+%description static -l de
+Statische Regina Libraries.
+
 %description static -l pl
 Statyczna biblioteka Regina.
 
