@@ -98,6 +98,7 @@ Pliki nag³ówkowe interpretera Regina.
 
 %package static
 Summary:	Static Regina library
+Summary(de):	Statische Regina Libraries
 Summary(pl):	Statyczna biblioteka Regina
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
