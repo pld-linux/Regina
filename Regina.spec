@@ -59,13 +59,13 @@ wystarczaj±co u¿ytecznym, by byæ u¿ywanym przez do¶wiadczonych.
 Idealnie sprawdza siê jako jêzyk pisania makr dla innych aplikacji
 
 Dwa g³ówne cele tego interpretera, to
-- Stuprocentowa kompatybilno¶æ ze standardemi ANSI
+- Stuprocentowa kompatybilno¶æ ze standardem ANSI
 - dostêpno¶æ na jak najwiêkszej liczbie platform
 
 %package devel
 Summary:	Header files for Regina
 Summary(de):	Header Dateien für Regina
-Summary(pl):	Pliki nag³ówkowe dla Regina
+Summary(pl):	Pliki nag³ówkowe interpretera Regina
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -76,12 +76,12 @@ Development files for Regina.
 Header Dateien für Regina.
 
 %description devel -l pl
-Pliki nag³ówkowe dla Regina.
+Pliki nag³ówkowe interpretera Regina.
 
 %package libs
 Summary:	Libraries for Regina
 Summary(de):	Regina Libraries
-Summary(pl):	Biblioteki dla Regina
+Summary(pl):	Biblioteki interpretera Regina
 Group:		Libraries
 Provides:	libregina.so
 Provides:	libregina.so(REXXSAA_API)
@@ -94,7 +94,7 @@ Regina libraries.
 Regina Libraries.
 
 %description libs -l pl
-Biblioteki dla packietu Regina.
+Biblioteki dla interpretera Regina.
 
 %prep
 %setup -q
@@ -108,9 +108,11 @@ Biblioteki dla packietu Regina.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{/etc/rc.d/init.d/,%{_mandir}/man1}
+install -d $RPM_BUILD_ROOT{/etc/rc.d/init.d,%{_mandir}/man1}
+
 %{__make} install \
-    DESTDIR=$RPM_BUILD_ROOT
+	DESTDIR=$RPM_BUILD_ROOT
+
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/rxstack
 install regina.1 $RPM_BUILD_ROOT%{_mandir}/man1
 rm -f $RPM_BUILD_ROOT%{_prefix}/etc/rc.d/init.d/rxstack
@@ -129,8 +131,8 @@ if [ "$1" = "0" ] ; then
 	/sbin/chkconfig --del rxstack
 fi
 
-%post libs -p /sbin/ldconfig
-%postun libs -p /sbin/ldconfig
+%post	libs -p /sbin/ldconfig
+%postun	libs -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
@@ -148,5 +150,5 @@ fi
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/*.a
+%{_libdir}/*.a
 %{_includedir}/rexxsaa.h
