@@ -1,8 +1,8 @@
 # TODO:
 #  - use bconds
 Summary:	Rexx interpreter
-Summary(de.UTF-8):   Ein Interpreter für REXX
-Summary(pl.UTF-8):   Interpreter języka REXX
+Summary(de.UTF-8):	Ein Interpreter für REXX
+Summary(pl.UTF-8):	Interpreter języka REXX
 Name:		Regina
 Version:	3.3
 Release:	0.1
@@ -67,8 +67,8 @@ Dwa główne cele tego interpretera, to
 
 %package libs
 Summary:	Libraries for Regina
-Summary(de.UTF-8):   Regina Libraries
-Summary(pl.UTF-8):   Biblioteki interpretera Regina
+Summary(de.UTF-8):	Regina Libraries
+Summary(pl.UTF-8):	Biblioteki interpretera Regina
 Group:		Libraries
 
 %description libs
@@ -82,8 +82,8 @@ Biblioteki dla interpretera Regina.
 
 %package devel
 Summary:	Header files for Regina
-Summary(de.UTF-8):   Header Dateien für Regina
-Summary(pl.UTF-8):   Pliki nagłówkowe interpretera Regina
+Summary(de.UTF-8):	Header Dateien für Regina
+Summary(pl.UTF-8):	Pliki nagłówkowe interpretera Regina
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -98,8 +98,8 @@ Pliki nagłówkowe interpretera Regina.
 
 %package static
 Summary:	Static Regina library
-Summary(de.UTF-8):   Statische Regina Libraries
-Summary(pl.UTF-8):   Statyczna biblioteka Regina
+Summary(de.UTF-8):	Statische Regina Libraries
+Summary(pl.UTF-8):	Statyczna biblioteka Regina
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
