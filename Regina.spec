@@ -1,8 +1,8 @@
 # TODO:
 #  - use bconds
 Summary:	Rexx interpreter
-Summary(de):	Ein Interpreter für REXX
-Summary(pl):	Interpreter jêzyka REXX
+Summary(de.UTF-8):   Ein Interpreter fÃ¼r REXX
+Summary(pl.UTF-8):   Interpreter jÄ™zyka REXX
 Name:		Regina
 Version:	3.3
 Release:	0.1
@@ -37,79 +37,79 @@ There are two major goals for Regina:
 - become 100% compliant with the ANSI Standard.
 - be available on as many platforms as possible
 
-%description -l de
-Regina ist ein Rexx Interpreter der für die meisten Unix Platformen
-übersetzt worden ist (Linux, FreeBSD, Solaris, AIX, HP-UX, usw.) und
-auser dem auch für OS/2, eCS, DOS, Win9x/Me/NT/2k/XP, Amiga, Aros,
+%description -l de.UTF-8
+Regina ist ein Rexx Interpreter der fÃ¼r die meisten Unix Platformen
+Ã¼bersetzt worden ist (Linux, FreeBSD, Solaris, AIX, HP-UX, usw.) und
+auser dem auch fÃ¼r OS/2, eCS, DOS, Win9x/Me/NT/2k/XP, Amiga, Aros,
 QNX4.x, QNX6.x, BeOS, MacOS X, EPOC32, AtheOS, OpenVMS, SkyOS und
-OpenEdition. Rexx ist eine Programiersprache die für unerfahrene
-Programierer entwickelt wurde aber Stark genug für erfahrene
+OpenEdition. Rexx ist eine Programiersprache die fÃ¼r unerfahrene
+Programierer entwickelt wurde aber Stark genug fÃ¼r erfahrene
 Programierer ist. Es ist ebenfalls eine Sprache die sich ideal als
-Makrosprache für andere Applikationen eignet.
+Makrosprache fÃ¼r andere Applikationen eignet.
 
 Regina hat zwei Hauptziele:
 - es soll 100% kompatibel mit dem ANSI Standard sein
-- es soll auf so vielen Platformen wie nur möglich laufen
+- es soll auf so vielen Platformen wie nur mÃ¶glich laufen
 
-%description -l pl
-Regina jest interpreterem jêzyka REXX, który zosta³ ju¿ przeniesiony
-na wiêkszo¶æ Unixowych platform (Linux, FreeBSD, Solaris, AIX, HP-UX,
-itp.) a tak¿e OS/2, eCS, DOS, Win9x/Me/NT/2k/XP, Amiga, AROS, QNX4.x,
+%description -l pl.UTF-8
+Regina jest interpreterem jÄ™zyka REXX, ktÃ³ry zostaÅ‚ juÅ¼ przeniesiony
+na wiÄ™kszoÅ›Ä‡ Unixowych platform (Linux, FreeBSD, Solaris, AIX, HP-UX,
+itp.) a takÅ¼e OS/2, eCS, DOS, Win9x/Me/NT/2k/XP, Amiga, AROS, QNX4.x,
 QNX6.x, BeOS, MacOS X, EPOC32, AtheOS, OpenVMS, SkyOS and OpenEdition.
-Rexx jest jêzykiem programowania, który zosta³ zaprojektowany, by byæ
-prostym w u¿yciu przez niedo¶wiadczonych programistów oraz
-wystarczaj±co u¿ytecznym, by byæ u¿ywanym przez do¶wiadczonych.
-Idealnie sprawdza siê jako jêzyk pisania makr dla innych aplikacji
+Rexx jest jÄ™zykiem programowania, ktÃ³ry zostaÅ‚ zaprojektowany, by byÄ‡
+prostym w uÅ¼yciu przez niedoÅ›wiadczonych programistÃ³w oraz
+wystarczajÄ…co uÅ¼ytecznym, by byÄ‡ uÅ¼ywanym przez doÅ›wiadczonych.
+Idealnie sprawdza siÄ™ jako jÄ™zyk pisania makr dla innych aplikacji
 
-Dwa g³ówne cele tego interpretera, to
-- Stuprocentowa kompatybilno¶æ ze standardem ANSI
-- dostêpno¶æ na jak najwiêkszej liczbie platform
+Dwa gÅ‚Ã³wne cele tego interpretera, to
+- Stuprocentowa kompatybilnoÅ›Ä‡ ze standardem ANSI
+- dostÄ™pnoÅ›Ä‡ na jak najwiÄ™kszej liczbie platform
 
 %package libs
 Summary:	Libraries for Regina
-Summary(de):	Regina Libraries
-Summary(pl):	Biblioteki interpretera Regina
+Summary(de.UTF-8):   Regina Libraries
+Summary(pl.UTF-8):   Biblioteki interpretera Regina
 Group:		Libraries
 
 %description libs
 Regina libraries.
 
-%description libs -l de
+%description libs -l de.UTF-8
 Regina Libraries.
 
-%description libs -l pl
+%description libs -l pl.UTF-8
 Biblioteki dla interpretera Regina.
 
 %package devel
 Summary:	Header files for Regina
-Summary(de):	Header Dateien für Regina
-Summary(pl):	Pliki nag³ówkowe interpretera Regina
+Summary(de.UTF-8):   Header Dateien fÃ¼r Regina
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe interpretera Regina
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Development files for Regina.
 
-%description devel -l de
-Header Dateien für Regina.
+%description devel -l de.UTF-8
+Header Dateien fÃ¼r Regina.
 
-%description devel -l pl
-Pliki nag³ówkowe interpretera Regina.
+%description devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe interpretera Regina.
 
 %package static
 Summary:	Static Regina library
-Summary(de):	Statische Regina Libraries
-Summary(pl):	Statyczna biblioteka Regina
+Summary(de.UTF-8):   Statische Regina Libraries
+Summary(pl.UTF-8):   Statyczna biblioteka Regina
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static Regina library.
 
-%description static -l de
+%description static -l de.UTF-8
 Statische Regina Libraries.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka Regina.
 
 %prep
