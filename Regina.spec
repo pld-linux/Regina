@@ -4,14 +4,13 @@ Summary:	Rexx interpreter
 Summary(de.UTF-8):	Ein Interpreter für REXX
 Summary(pl.UTF-8):	Interpreter języka REXX
 Name:		Regina
-Version:	3.3
+Version:	3.4
 Release:	0.1
 License:	GPL
 Group:		Applications
 Source0:	http://dl.sourceforge.net/regina-rexx/%{name}-REXX-%{version}.tar.gz
-# Source0-md5:	bdb85f57cbe3e7f9b45aea329cd7752e
+# Source0-md5:	3300e28b39134211a45aedb0e760cd44
 Source1:	%{name}.init
-Patch0:		%{name}-makefileinfix.patch
 URL:		http://regina-rexx.sourceforge.net
 BuildRequires:	automake
 BuildRequires:	bison
@@ -52,14 +51,15 @@ Regina hat zwei Hauptziele:
 - es soll auf so vielen Platformen wie nur möglich laufen
 
 %description -l pl.UTF-8
-Regina jest interpreterem języka REXX, który został już przeniesiony
-na większość Unixowych platform (Linux, FreeBSD, Solaris, AIX, HP-UX,
-itp.) a także OS/2, eCS, DOS, Win9x/Me/NT/2k/XP, Amiga, AROS, QNX4.x,
-QNX6.x, BeOS, MacOS X, EPOC32, AtheOS, OpenVMS, SkyOS and OpenEdition.
-Rexx jest językiem programowania, który został zaprojektowany, by być
-prostym w użyciu przez niedoświadczonych programistów oraz
-wystarczająco użytecznym, by być używanym przez doświadczonych.
-Idealnie sprawdza się jako język pisania makr dla innych aplikacji
+Regina jest interpreterem języka REXX, który został już
+przeniesiony na większość Unixowych platform (Linux, FreeBSD,
+Solaris, AIX, HP-UX, itp.) a także OS/2, eCS, DOS, Win9x/Me/NT/2k/XP,
+Amiga, AROS, QNX4.x, QNX6.x, BeOS, MacOS X, EPOC32, AtheOS, OpenVMS,
+SkyOS and OpenEdition. Rexx jest językiem programowania, który
+został zaprojektowany, by być prostym w użyciu przez
+niedoświadczonych programistów oraz wystarczająco użytecznym, by
+być używanym przez doświadczonych. Idealnie sprawdza się jako
+język pisania makr dla innych aplikacji
 
 Dwa główne cele tego interpretera, to
 - Stuprocentowa kompatybilność ze standardem ANSI
@@ -114,7 +114,6 @@ Statyczna biblioteka Regina.
 
 %prep
 %setup -q
-%patch0 -p1
 
 # hacks for weak tests for gcc
 sed -i -e 's/gcc)/*gcc)/;s/= "gcc"/= "%{__cc}"/' configure
@@ -126,7 +125,7 @@ sed -i -e 's/\$(ABI) -shared/$(ABI) -Wl,-soname=${SHLPRE}${SHLFILE}${SHLPST}.\\$
 %build
 cp -f /usr/share/automake/config.* .
 %configure2_13
-%{__make} \
+%{__make} -j 1 \
 	CC="%{__cc}" \
 	CFLAGS="%{rpmcflags}"
 
@@ -134,7 +133,7 @@ cp -f /usr/share/automake/config.* .
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{/etc/rc.d/init.d,%{_mandir}/man1}
 
-%{__make} install \
+%{__make} install -j 1 \
 	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/rxstack
@@ -171,7 +170,7 @@ fi
 %files libs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libregina.so.*.*
-%attr(755,root,root) %{_libdir}/libtest*.so
+%attr(755,root,root) %{_libdir}/librxtest*.so
 
 %files devel
 %defattr(644,root,root,755)
