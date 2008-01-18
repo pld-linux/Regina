@@ -11,6 +11,7 @@ Group:		Applications
 Source0:	http://dl.sourceforge.net/regina-rexx/%{name}-REXX-%{version}.tar.gz
 # Source0-md5:	3300e28b39134211a45aedb0e760cd44
 Source1:	%{name}.init
+Patch0:		%{name}-x86_64.patch
 URL:		http://regina-rexx.sourceforge.net
 BuildRequires:	automake
 BuildRequires:	bison
@@ -114,6 +115,7 @@ Statyczna biblioteka Regina.
 
 %prep
 %setup -q
+%patch0 -p0
 
 # hacks for weak tests for gcc
 sed -i -e 's/gcc)/*gcc)/;s/= "gcc"/= "%{__cc}"/' configure
