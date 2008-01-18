@@ -117,16 +117,13 @@ Statyczna biblioteka Regina.
 %setup -q
 %patch0 -p0
 
-# hacks for weak tests for gcc
-sed -i -e 's/gcc)/*gcc)/;s/= "gcc"/= "%{__cc}"/' configure
 # unnecessary libs
 sed -i -e 's/nsl nsl_s socket//' configure
 # set soname
 sed -i -e 's/\$(ABI) -shared/$(ABI) -Wl,-soname=${SHLPRE}${SHLFILE}${SHLPST}.\\$(ABI) -shared/' configure
 
 %build
-cp -f /usr/share/automake/config.* .
-%configure2_13
+%configure
 %{__make} -j 1 \
 	CC="%{__cc}" \
 	CFLAGS="%{rpmcflags}"
