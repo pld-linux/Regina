@@ -1,0 +1,28 @@
+--- gci/gci_convert.linux.86_64~	2007-09-16 07:21:51.000000000 +0200
++++ gci/gci_convert.linux.86_64	2008-01-18 16:02:37.890489267 +0100
+@@ -57,8 +57,8 @@
+ 
+ #if 0
+ 
+-             AMD's Opteron uses argument passing on the floating point unit
+-             which isn't supported by GCI!
++//             AMD's Opteron uses argument passing on the floating point unit
++//             which isn't supported by GCI!
+ 
+ #define GCI_Fr        strtold
+ #define GCI_Fw(s,v)   sprintf( s, "%.*LE", LDBL_MANT_DIG/3, v )
+--- gci/gci_convert.linux.alpha~	2007-09-16 07:21:51.000000000 +0200
++++ gci/gci_convert.linux.alpha	2008-01-19 01:54:14.000000000 +0100
+@@ -57,9 +57,9 @@
+ 
+ #if 0
+ 
+-             Alpha uses an alternate method for passing floating point values
+-             in opposite to integer values.
+-             This isn't supported by GCI!
++//             Alpha uses an alternate method for passing floating point values
++//             in opposite to integer values.
++//             This isn't supported by GCI!
+ 
+ #define GCI_Fr        strtod
+ #define GCI_Fw(s,v)   sprintf( s, "%.*lE", LDBL_MANT_DIG/3, v )
