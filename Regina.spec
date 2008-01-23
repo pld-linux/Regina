@@ -12,7 +12,7 @@ Source0:	http://dl.sourceforge.net/regina-rexx/%{name}-REXX-%{version}.tar.gz
 # Source0-md5:	3300e28b39134211a45aedb0e760cd44
 Source1:	%{name}.init
 Patch0:		%{name}-gci_convert.patch
-URL:		http://regina-rexx.sourceforge.net
+URL:		http://regina-rexx.sourceforge.net/
 BuildRequires:	automake
 BuildRequires:	bison
 BuildRequires:	flex
@@ -52,15 +52,14 @@ Regina hat zwei Hauptziele:
 - es soll auf so vielen Platformen wie nur möglich laufen
 
 %description -l pl.UTF-8
-Regina jest interpreterem języka REXX, który został już
-przeniesiony na większość Unixowych platform (Linux, FreeBSD,
-Solaris, AIX, HP-UX, itp.) a także OS/2, eCS, DOS, Win9x/Me/NT/2k/XP,
-Amiga, AROS, QNX4.x, QNX6.x, BeOS, MacOS X, EPOC32, AtheOS, OpenVMS,
-SkyOS and OpenEdition. Rexx jest językiem programowania, który
-został zaprojektowany, by być prostym w użyciu przez
-niedoświadczonych programistów oraz wystarczająco użytecznym, by
-być używanym przez doświadczonych. Idealnie sprawdza się jako
-język pisania makr dla innych aplikacji
+Regina jest interpreterem języka REXX, który został już przeniesiony
+na większość Unixowych platform (Linux, FreeBSD, Solaris, AIX, HP-UX,
+itp.) a także OS/2, eCS, DOS, Win9x/Me/NT/2k/XP, Amiga, AROS, QNX4.x,
+QNX6.x, BeOS, MacOS X, EPOC32, AtheOS, OpenVMS, SkyOS and OpenEdition.
+Rexx jest językiem programowania, który został zaprojektowany, by być
+prostym w użyciu przez niedoświadczonych programistów oraz
+wystarczająco użytecznym, by być używanym przez doświadczonych.
+Idealnie sprawdza się jako język pisania makr dla innych aplikacji.
 
 Dwa główne cele tego interpretera, to
 - Stuprocentowa kompatybilność ze standardem ANSI
