@@ -5,7 +5,7 @@ Summary(de.UTF-8):	Ein Interpreter für REXX
 Summary(pl.UTF-8):	Interpreter języka REXX
 Name:		Regina
 Version:	3.4
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications
 Source0:	http://dl.sourceforge.net/regina-rexx/%{name}-REXX-%{version}.tar.gz
